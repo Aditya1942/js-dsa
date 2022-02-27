@@ -177,7 +177,6 @@ export class LinkedList {
     this.length--;
     return tail;
   }
-
   at(index) {
     if (!this.head) return;
     if (index === 0) return this.head;
@@ -189,5 +188,14 @@ export class LinkedList {
       count++;
     }
     if (!currentNode) return this.tail;
+  }
+  find(value) {
+    if (!this.head) return;
+    if (this.head.data === value) return this.head;
+    let currentNode = this.head;
+    while (currentNode.next) {
+      currentNode = currentNode.next;
+      if (currentNode.data === value) return currentNode;
+    }
   }
 }

@@ -4,5 +4,5 @@ let linkedList = new LinkedList();
 linkedList.prepend(1);
 linkedList.prepend(2);
 linkedList.prepend(3);
-console.log(linkedList.deleteTail());
+console.log(linkedList.find(3));
 console.log(linkedList);
