@@ -1,8 +1,8 @@
 import { LinkedList } from "./LinkedList.js";
 
 let linkedList = new LinkedList();
-linkedList.append(0);
+linkedList.prepend(1);
 linkedList.prepend(2);
-linkedList.insert(1, 1);
-linkedList.insert(3, 5);
+linkedList.prepend(3);
+console.log(linkedList.deleteTail());
 console.log(linkedList);

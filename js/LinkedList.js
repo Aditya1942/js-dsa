@@ -15,6 +15,7 @@ export class LinkedList {
     this.tail = null;
     this.length = 0;
   }
+
   // insert Node at the end of LinkedList
   prepend(value) {
     // make new Node object
@@ -77,13 +78,16 @@ export class LinkedList {
 
     // if is first value of LinkedList
     if (this.head.data === value) {
-      this.deleteHead();
-      return;
+      return this.deleteHead();
     }
+    // if delete value is at last Node
+
     let currentNode = this.head;
+    let head = null;
     while (currentNode.next) {
       // if next value is equls to delete value remove Node from LinkedList
       if (currentNode.next.data === value) {
+        head = currentNode.next;
         currentNode.next = currentNode.next.next;
         this.length--;
         break;
@@ -91,26 +95,28 @@ export class LinkedList {
         currentNode = currentNode.next;
       }
     }
-    // if delete value is at last Node
     if (this.tail.data === value) {
       this.tail = currentNode;
+      head = this.currentNode;
     }
+    return head;
   }
   // delete Node from LinkedList with index
   deleteAt(index) {
     if (!this.head) return;
     // if index is First Node
     if (index === 0) {
-      this.deleteHead();
-      return;
+      return this.deleteHead();
     }
 
     let currentNode = this.head;
     let count = 1;
+    let head = null;
     // Traverse LinkedList at index
     while (currentNode.next) {
       // if next Node is equls to delete index remove Node from LinkedList
       if (count === index) {
+        head = currentNode.next;
         currentNode.next = currentNode.next.next;
         this.length--;
         break;
@@ -122,36 +128,66 @@ export class LinkedList {
     if (currentNode.next === null) {
       this.tail = currentNode;
     }
+
+    return head;
   }
   // delete first Node from LinkedList
   deleteHead() {
     if (!this.head) {
       return;
     }
+    let head = this.head;
     if (this.head.next) {
       this.head = this.head.next;
       this.length--;
+      return head;
     }
+    this.head = null;
+
+    return head;
   }
   // delete last Node from LinkedList
   deleteTail() {
     if (!this.head) {
       return;
     }
+    let tail = null;
+    // if head is tail delete LinkedList
     if (this.head === this.tail) {
+      tail = this.head;
       this.head = null;
       this.tail = null;
-      return;
+      return tail;
     }
     let currentNode = this.head;
+    // Traverse till second last and delete last
     while (currentNode.next) {
+      // if next of next of currentNode is null
       if (!currentNode.next.next) {
+        tail = currentNode.next;
         currentNode.next = null;
-      } else {
+      }
+      // if next of next of currentNode is not null
+      else {
+        tail = currentNode;
         currentNode = currentNode.next;
       }
     }
-    this.length--;
     this.tail = currentNode;
+    this.length--;
+    return tail;
+  }
+
+  at(index) {
+    if (!this.head) return;
+    if (index === 0) return this.head;
+    let currentNode = this.head;
+    let count = 0;
+    while (currentNode) {
+      if (index === count) return currentNode;
+      currentNode = currentNode.next;
+      count++;
+    }
+    if (!currentNode) return this.tail;
   }
 }
