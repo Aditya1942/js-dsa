@@ -5,7 +5,8 @@ test("at", () => {
   linkedList.append(1);
   linkedList.append(2);
   linkedList.append(3);
-  expect(linkedList.at(1).data).toBe(2);
+  expect(linkedList.at(2).data).toBe(1);
+  expect(linkedList.at(5).data).toBe(null);
 });
 test("append", () => {
   let linkedList = new LinkedList();
@@ -70,4 +71,14 @@ test("deleteTail", () => {
   expect(linkedList.deleteTail().data).toBe(3);
   expect(linkedList.deleteTail().data).toBe(2);
   expect(linkedList.deleteTail().data).toBe(1);
+});
+test("find", () => {
+  let linkedList = new LinkedList();
+  linkedList.append(1);
+  linkedList.append(2);
+  linkedList.append(3);
+  expect(linkedList.find(3).data).toBe(3);
+  expect(linkedList.find(1).data).toBe(1);
+  expect(linkedList.find(2).data).toBe(2);
+  expect(linkedList.find(5).data).toBe(null);
 });

@@ -187,7 +187,7 @@ export class LinkedList {
       currentNode = currentNode.next;
       count++;
     }
-    if (!currentNode) return this.tail;
+    if (!currentNode) return { data: null, next: null };
   }
   find(value) {
     if (!this.head) return;
@@ -197,5 +197,6 @@ export class LinkedList {
       currentNode = currentNode.next;
       if (currentNode.data === value) return currentNode;
     }
+    return { data: null, next: null };
   }
 }

@@ -2,7 +2,6 @@ import { LinkedList } from "./LinkedList.js";
 
 let linkedList = new LinkedList();
 linkedList.prepend(1);
-linkedList.prepend(2);
-linkedList.prepend(3);
-console.log(linkedList.find(3));
+
+console.log(linkedList.at(0));
 console.log(linkedList);
