@@ -1,4 +1,4 @@
-import { LinkedList } from "../DS/LinkedList";
+import { LinkedList } from "../data-structures/LinkedList";
 
 test("at", () => {
   let linkedList = new LinkedList();

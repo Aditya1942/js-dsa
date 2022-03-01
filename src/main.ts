@@ -1,4 +1,4 @@
-import { LinkedList } from "./DS/LinkedList";
+import { LinkedList } from "./data-structures/LinkedList";
 import "./style.css";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
