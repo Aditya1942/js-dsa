@@ -184,6 +184,7 @@ export class LinkedList {
 
     return tail || { data: null, next: null };
   }
+  // get Node from LinkedList with index
   at(index: number): any {
     if (!this.head) return;
     if (index === 0) return this.head;
@@ -196,6 +197,7 @@ export class LinkedList {
     }
     if (!currentNode) return { data: null, next: null };
   }
+  // get Node from LinkedList with value
   find(value: any): any {
     if (!this.head) return;
     if (this.head.data === value) return this.head;
@@ -205,5 +207,18 @@ export class LinkedList {
       if (currentNode.data === value) return currentNode;
     }
     return { data: null, next: null };
+  }
+  // get array of LinkedList
+  toArray(): string[] {
+    let List: string[] = [];
+
+    let currentNode = this.head;
+
+    while (currentNode) {
+      List.push(currentNode?.data || "");
+      currentNode = currentNode.next;
+    }
+
+    return List;
   }
 }
