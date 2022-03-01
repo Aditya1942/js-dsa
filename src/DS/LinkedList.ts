@@ -1,50 +1,56 @@
-class Node {
-  constructor(data, next = null) {
+export class Node {
+  data: any;
+  next: Node | null;
+  constructor(data: any, next: any = null) {
     this.data = data;
     this.next = next;
   }
-  toString(callback) {
-    return callback ? callback(this.value) : `${this.value}`;
-  }
 }
 export class LinkedList {
-  constructor(value) {
+  head: Node | null;
+  tail: Node;
+  length: number;
+  currentNode: any;
+  constructor() {
     // first element in linked list
     this.head = null;
     // last element in linked list
-    this.tail = null;
+    this.tail = { data: null, next: null };
     this.length = 0;
   }
-
-  // insert Node at the end of LinkedList
-  prepend(value) {
-    // make new Node object
-    let newNode = new Node(value);
-    // if is first Node in LinkedList insert new Node in head
-    if (!this.head) {
-      this.head = newNode;
-    }
-    // insert new Node at the end of LinkedList
-    else {
-      this.tail.next = newNode;
-    }
-    // set tail as last Node
-    this.tail = newNode;
-    this.length++;
-  }
   // insert Node at beginning of LinkedList
-  append(value) {
-    // make new Node object with next Node of head
-    let newNode = new Node(value, this.head);
+
+  prepend(value: any): any {
+    // make new Node object
+    const newNode = new Node(value, this.head);
+    // if is first Node in LinkedList insert new Node in head
     this.head = newNode;
-    this.length++;
-    // if is first Node in LinkedList set tail as newNode
+    // insert new Node at the end of LinkedList
     if (!this.tail) {
       this.tail = newNode;
     }
+    // set tail as last Node
+    this.length++;
+    return this;
+  }
+  // insert Node at the end of LinkedList
+  append(value: any): any {
+    // make new Node object with next Node of head
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+      this.length++;
+      return this;
+    }
+    // if is first Node in LinkedList set tail as newNode
+    this.tail.next = newNode;
+    this.tail = newNode;
+
+    return this;
   }
   // insert Node at the given index of LinkedList
-  insert(value, index) {
+  insert(value: any, index: number): any {
     index = index < 0 ? 0 : index ?? 0;
     // if index is first Node
     if (index === 0) {
@@ -52,7 +58,7 @@ export class LinkedList {
       return;
     }
     let count = 1;
-    let currentNode = this.head;
+    let currentNode: Node | null = this.head;
     const newNode = new Node(value);
     // find Node in with index
     while (currentNode) {
@@ -68,11 +74,11 @@ export class LinkedList {
     }
     // if index if out of LinkedList insert Node at the end
     else {
-      this.prepend(value);
+      this.append(value);
     }
   }
   // delete Node from LinkedList with value
-  delete(value) {
+  delete(value: any): any {
     // if is empty LinkedList
     if (!this.head) return;
 
@@ -95,14 +101,14 @@ export class LinkedList {
         currentNode = currentNode.next;
       }
     }
-    if (this.tail.data === value) {
+    if (this.tail?.data === value) {
       this.tail = currentNode;
       head = this.currentNode;
     }
     return head;
   }
   // delete Node from LinkedList with index
-  deleteAt(index) {
+  deleteAt(index: number): any {
     if (!this.head) return;
     // if index is First Node
     if (index === 0) {
@@ -132,7 +138,7 @@ export class LinkedList {
     return head;
   }
   // delete first Node from LinkedList
-  deleteHead() {
+  deleteHead(): any {
     if (!this.head) {
       return;
     }
@@ -147,7 +153,7 @@ export class LinkedList {
     return head;
   }
   // delete last Node from LinkedList
-  deleteTail() {
+  deleteTail(): any {
     if (!this.head) {
       return;
     }
@@ -156,7 +162,7 @@ export class LinkedList {
     if (this.head === this.tail) {
       tail = this.head;
       this.head = null;
-      this.tail = null;
+      this.tail = { data: null, next: null };
       return tail;
     }
     let currentNode = this.head;
@@ -175,12 +181,13 @@ export class LinkedList {
     }
     this.tail = currentNode;
     this.length--;
-    return tail;
+
+    return tail || { data: null, next: null };
   }
-  at(index) {
+  at(index: number): any {
     if (!this.head) return;
     if (index === 0) return this.head;
-    let currentNode = this.head;
+    let currentNode: Node | null = this.head;
     let count = 0;
     while (currentNode) {
       if (index === count) return currentNode;
@@ -189,7 +196,7 @@ export class LinkedList {
     }
     if (!currentNode) return { data: null, next: null };
   }
-  find(value) {
+  find(value: any): any {
     if (!this.head) return;
     if (this.head.data === value) return this.head;
     let currentNode = this.head;
