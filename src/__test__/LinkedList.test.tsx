@@ -89,3 +89,11 @@ test("toArray", () => {
   linkedList.append(3);
   expect(linkedList.toArray()).toEqual([1, 2, 3]);
 });
+test("toString", () => {
+  let linkedList = new LinkedList();
+  linkedList.append(0);
+  linkedList.append(1);
+  linkedList.append(2);
+  linkedList.append(3);
+  expect(linkedList.toString()).toEqual("0=>1=>2=>3");
+});

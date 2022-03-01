@@ -9,8 +9,9 @@ app.innerHTML = `
 `;
 
 const linkedList = new LinkedList();
-linkedList.append(1);
-linkedList.append(2);
-linkedList.append(3);
+
+for (let index = 0; index < 100; index++) {
+  linkedList.append(index);
+}
 console.log(linkedList.toArray());
 console.log(linkedList);

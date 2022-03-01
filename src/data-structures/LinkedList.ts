@@ -211,14 +211,24 @@ export class LinkedList {
   // get array of LinkedList
   toArray(): string[] {
     let List: string[] = [];
-
     let currentNode = this.head;
-
     while (currentNode) {
-      List.push(currentNode?.data || "");
+      List.push(currentNode.data ?? null);
       currentNode = currentNode.next;
     }
-
     return List;
+  }
+  // get String representation of LinkedList
+
+  toString(): string {
+    let LinkedListString = "";
+    let List: any[] = [];
+    let currentNode = this.head;
+    while (currentNode) {
+      List.push(currentNode.data ?? null);
+      currentNode = currentNode.next;
+    }
+    LinkedListString = List.join("=>");
+    return LinkedListString;
   }
 }
