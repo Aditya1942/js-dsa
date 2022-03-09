@@ -97,3 +97,10 @@ test("toString", () => {
   linkedList.append(3);
   expect(linkedList.toString()).toEqual("0=>1=>2=>3");
 });
+test("full test", () => {
+  let linkedList = new LinkedList();
+  linkedList.append("appended");
+  expect(linkedList.toString()).toEqual("appended");
+  linkedList.prepend("prepended");
+  expect(linkedList.toString()).toEqual("prepended=>appended");
+});

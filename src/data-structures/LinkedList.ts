@@ -19,14 +19,14 @@ export class LinkedList {
     this.length = 0;
   }
   // insert Node at beginning of LinkedList
-
   prepend(value: any): any {
     // make new Node object
+
     const newNode = new Node(value, this.head);
     // if is first Node in LinkedList insert new Node in head
     this.head = newNode;
     // insert new Node at the end of LinkedList
-    if (!this.tail) {
+    if (this.tail.data !== null) {
       this.tail = newNode;
     }
     // set tail as last Node
@@ -112,7 +112,17 @@ export class LinkedList {
     if (!this.head) return;
     // if index is First Node
     if (index === 0) {
-      return this.deleteHead();
+      let head = this.head;
+      if (this.head.next) {
+        this.head = this.head.next;
+        this.length--;
+        return head;
+      }
+      this.head = null;
+      return head;
+    }
+    if (index === -1) {
+      return this.deleteTail();
     }
 
     let currentNode = this.head;
@@ -139,18 +149,7 @@ export class LinkedList {
   }
   // delete first Node from LinkedList
   deleteHead(): any {
-    if (!this.head) {
-      return;
-    }
-    let head = this.head;
-    if (this.head.next) {
-      this.head = this.head.next;
-      this.length--;
-      return head;
-    }
-    this.head = null;
-
-    return head;
+    return this.deleteAt(0);
   }
   // delete last Node from LinkedList
   deleteTail(): any {
@@ -218,8 +217,13 @@ export class LinkedList {
     }
     return List;
   }
-  // get String representation of LinkedList
 
+  // Check if list is empty
+  isEmpty() {
+    return this.length === 0;
+  }
+
+  // get String representation of LinkedList
   toString(): string {
     let LinkedListString = "";
     let List: any[] = [];
@@ -230,5 +234,18 @@ export class LinkedList {
     }
     LinkedListString = List.join("=>");
     return LinkedListString;
+  }
+  // Get the size of the list
+  size() {
+    return this.length;
+  }
+  // Get the head
+  getHead() {
+    return this.head;
+  }
+
+  // Get the tail
+  getTail() {
+    return this.tail;
   }
 }
