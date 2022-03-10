@@ -8,14 +8,14 @@ export class Node {
 }
 export class LinkedList {
   head: Node | null;
-  tail: Node;
-  length: number;
+  tail: Node | null;
+  length: number = 0;
   currentNode: any;
   constructor() {
     // first element in linked list
     this.head = null;
     // last element in linked list
-    this.tail = { data: null, next: null };
+    this.tail = null;
     this.length = 0;
   }
   // insert Node at beginning of LinkedList
@@ -26,36 +26,37 @@ export class LinkedList {
     // if is first Node in LinkedList insert new Node in head
     this.head = newNode;
     // insert new Node at the end of LinkedList
-    if (this.tail.data !== null) {
+    if (this.tail?.data !== null) {
       this.tail = newNode;
     }
     // set tail as last Node
     this.length++;
-    return this;
+    return newNode;
   }
   // insert Node at the end of LinkedList
   append(value: any): any {
-    // make new Node object with next Node of head
-    const newNode = new Node(value);
+    let newNode = new Node(value);
+    //  if is first node in LinkedList insert new Node in head
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
-      this.length++;
-      return this;
     }
-    // if is first Node in LinkedList set tail as newNode
-    this.tail.next = newNode;
-    this.tail = newNode;
-
-    return this;
+    // if is not first node in LinkedList insert new Node in tail
+    else {
+      if (this.tail !== null) {
+        this.tail.next = newNode;
+      }
+      this.tail = newNode;
+    }
+    this.length++;
+    return newNode;
   }
   // insert Node at the given index of LinkedList
   insert(value: any, index: number): any {
     index = index < 0 ? 0 : index ?? 0;
     // if index is first Node
     if (index === 0) {
-      this.prepend(value);
-      return;
+      return this.prepend(value);
     }
     let count = 1;
     let currentNode: Node | null = this.head;
@@ -71,11 +72,10 @@ export class LinkedList {
       newNode.next = currentNode.next;
       currentNode.next = newNode;
       this.length++;
+      return newNode;
     }
     // if index if out of LinkedList insert Node at the end
-    else {
-      this.append(value);
-    }
+    return this.append(value);
   }
   // delete Node from LinkedList with value
   delete(value: any): any {
@@ -84,7 +84,7 @@ export class LinkedList {
 
     // if is first value of LinkedList
     if (this.head.data === value) {
-      return this.deleteHead();
+      return this.deleteAt(0);
     }
     // if delete value is at last Node
 
@@ -109,42 +109,48 @@ export class LinkedList {
   }
   // delete Node from LinkedList with index
   deleteAt(index: number): any {
-    if (!this.head) return;
-    // if index is First Node
+    if (!this.head) {
+      return;
+    }
+    // Check if index is present in list
+    if (index < 0 || index >= this.length) {
+      return null;
+    }
+    // if removing first Node
     if (index === 0) {
-      let head = this.head;
-      if (this.head.next) {
-        this.head = this.head.next;
+      if (this.length === 1) {
+        let node = this.head;
+        this.head = null;
+        this.tail = null;
         this.length--;
-        return head;
+        return node;
       }
-      this.head = null;
+      let node = this.head;
+      this.head = this.head.next;
+      this.length--;
+      return node;
+    }
+    let count = 1;
+    let currentNode = this.head;
+    let head = null;
+    // find Node in with index
+    while (currentNode.next) {
+      if (count === index) break;
+      currentNode = currentNode.next;
+      count++;
+    }
+    // if index is in between the LinkedList
+    if (currentNode.next) {
+      head = currentNode.next;
+      currentNode.next = currentNode.next.next;
+      this.length--;
       return head;
     }
-    if (index === -1) {
-      return this.deleteTail();
-    }
-
-    let currentNode = this.head;
-    let count = 1;
-    let head = null;
-    // Traverse LinkedList at index
-    while (currentNode.next) {
-      // if next Node is equls to delete index remove Node from LinkedList
-      if (count === index) {
-        head = currentNode.next;
-        currentNode.next = currentNode.next.next;
-        this.length--;
-        break;
-      }
-      count++;
-      currentNode = currentNode.next;
-    }
-    // if delete value is at last Node
-    if (currentNode.next === null) {
+    // if removing last Node
+    if (this.tail?.data === currentNode.data) {
       this.tail = currentNode;
+      head = currentNode;
     }
-
     return head;
   }
   // delete first Node from LinkedList
@@ -153,35 +159,7 @@ export class LinkedList {
   }
   // delete last Node from LinkedList
   deleteTail(): any {
-    if (!this.head) {
-      return;
-    }
-    let tail = null;
-    // if head is tail delete LinkedList
-    if (this.head === this.tail) {
-      tail = this.head;
-      this.head = null;
-      this.tail = { data: null, next: null };
-      return tail;
-    }
-    let currentNode = this.head;
-    // Traverse till second last and delete last
-    while (currentNode.next) {
-      // if next of next of currentNode is null
-      if (!currentNode.next.next) {
-        tail = currentNode.next;
-        currentNode.next = null;
-      }
-      // if next of next of currentNode is not null
-      else {
-        tail = currentNode;
-        currentNode = currentNode.next;
-      }
-    }
-    this.tail = currentNode;
-    this.length--;
-
-    return tail || { data: null, next: null };
+    return this.deleteAt(this.length - 1);
   }
   // get Node from LinkedList with index
   at(index: number): any {
@@ -205,7 +183,7 @@ export class LinkedList {
       currentNode = currentNode.next;
       if (currentNode.data === value) return currentNode;
     }
-    return { data: null, next: null };
+    return null;
   }
   // get array of LinkedList
   toArray(): string[] {
@@ -233,7 +211,7 @@ export class LinkedList {
       currentNode = currentNode.next;
     }
     LinkedListString = List.join("=>");
-    return LinkedListString;
+    return LinkedListString || "";
   }
   // Get the size of the list
   size() {

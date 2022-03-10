@@ -7,6 +7,7 @@ test("at", () => {
   linkedList.append(3);
   expect(linkedList.at(2).data).toEqual(3);
   expect(linkedList.at(5).data).toEqual(null);
+  expect(linkedList.at(-1).data).toEqual(null);
 });
 test("append", () => {
   let linkedList = new LinkedList();
@@ -44,6 +45,7 @@ test("delete", () => {
   expect(linkedList.delete(1).data).toEqual(1);
   expect(linkedList.delete(2).data).toEqual(2);
   expect(linkedList.delete(3).data).toEqual(3);
+  expect(linkedList.delete(-1)?.data).toBeUndefined();
 });
 test("deleteAt", () => {
   let linkedList = new LinkedList();
@@ -80,7 +82,7 @@ test("find", () => {
   expect(linkedList.find(3).data).toEqual(3);
   expect(linkedList.find(1).data).toEqual(1);
   expect(linkedList.find(2).data).toEqual(2);
-  expect(linkedList.find(5).data).toEqual(null);
+  expect(linkedList.find(5)?.data).toBeUndefined();
 });
 test("toArray", () => {
   let linkedList = new LinkedList();
@@ -99,8 +101,41 @@ test("toString", () => {
 });
 test("full test", () => {
   let linkedList = new LinkedList();
+  expect(linkedList.isEmpty()).toEqual(true);
+
+  expect(linkedList.size()).toEqual(0);
+  linkedList.append("appended");
+  expect(linkedList.isEmpty()).toEqual(false);
+  expect(linkedList.toString()).toEqual("appended");
+  expect(linkedList.size()).toEqual(1);
+  linkedList.prepend("prepended");
+  expect(linkedList.size()).toEqual(2);
+  expect(linkedList.toString()).toEqual("prepended=>appended");
+  linkedList.insert("inserted", 1);
+  expect(linkedList.size()).toEqual(3);
+  expect(linkedList.toString()).toEqual("prepended=>inserted=>appended");
+  linkedList.delete("inserted");
+  expect(linkedList.toString()).toEqual("prepended=>appended");
+  linkedList.deleteHead();
+  expect(linkedList.toString()).toEqual("appended");
+  linkedList.deleteTail();
+  expect(linkedList.toString()).toEqual("");
   linkedList.append("appended");
   expect(linkedList.toString()).toEqual("appended");
   linkedList.prepend("prepended");
   expect(linkedList.toString()).toEqual("prepended=>appended");
+  linkedList.insert("inserted", 1);
+  expect(linkedList.toString()).toEqual("prepended=>inserted=>appended");
+  linkedList.deleteAt(1);
+  expect(linkedList.toString()).toEqual("prepended=>appended");
+  linkedList.delete("prepended");
+  expect(linkedList.toString()).toEqual("appended");
+  linkedList.delete("appended");
+  expect(linkedList.toString()).toEqual("");
+  linkedList.delete("sadfasdfasdf");
+  linkedList.deleteAt(100);
+  linkedList.deleteHead();
+  linkedList.deleteTail();
+  expect(linkedList.toString()).toEqual("");
+  expect(linkedList.isEmpty()).toEqual(true);
 });

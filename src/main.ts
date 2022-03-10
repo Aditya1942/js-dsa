@@ -9,7 +9,7 @@ app.innerHTML = `
 `;
 
 const linkedList = new LinkedList();
-linkedList.append("appended");
-console.log(linkedList.toString());
-linkedList.prepend("prepended");
-console.log(linkedList.toString());
+linkedList.insert("insert", 0);
+linkedList.insert("insert2", 1);
+
+console.log(linkedList.delete(-1));
