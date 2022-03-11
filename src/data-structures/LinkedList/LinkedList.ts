@@ -1,14 +1,14 @@
-export class Node {
+export class LinkedListNode {
   data: any;
-  next: Node | null;
+  next: LinkedListNode | null;
   constructor(data: any, next: any = null) {
     this.data = data;
     this.next = next;
   }
 }
 export class LinkedList {
-  head: Node | null;
-  tail: Node | null;
+  head: LinkedListNode | null;
+  tail: LinkedListNode | null;
   length: number = 0;
   currentNode: any;
   constructor() {
@@ -22,7 +22,7 @@ export class LinkedList {
   prepend(value: any): any {
     // make new Node object
 
-    const newNode = new Node(value, this.head);
+    const newNode = new LinkedListNode(value, this.head);
     // if is first Node in LinkedList insert new Node in head
     this.head = newNode;
     // insert new Node at the end of LinkedList
@@ -35,7 +35,7 @@ export class LinkedList {
   }
   // insert Node at the end of LinkedList
   append(value: any): any {
-    let newNode = new Node(value);
+    let newNode = new LinkedListNode(value);
     //  if is first node in LinkedList insert new Node in head
     if (!this.head) {
       this.head = newNode;
@@ -59,8 +59,8 @@ export class LinkedList {
       return this.prepend(value);
     }
     let count = 1;
-    let currentNode: Node | null = this.head;
-    const newNode = new Node(value);
+    let currentNode: LinkedListNode | null = this.head;
+    const newNode = new LinkedListNode(value);
     // find Node in with index
     while (currentNode) {
       if (count === index) break;
@@ -165,7 +165,7 @@ export class LinkedList {
   at(index: number): any {
     if (!this.head) return;
     if (index === 0) return this.head;
-    let currentNode: Node | null = this.head;
+    let currentNode: LinkedListNode | null = this.head;
     let count = 0;
     while (currentNode) {
       if (index === count) return currentNode;
