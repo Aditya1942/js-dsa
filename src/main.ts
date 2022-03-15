@@ -1,7 +1,5 @@
-import { LinkedList } from "./data-structures/LinkedList/LinkedList";
-import { deleteNode } from "./data-structures/LinkedList/Questions/delete-a-node-from-a-linked-list";
-import { insertNodeAtPosition } from "./data-structures/LinkedList/Questions/insert-a-node-at-a-specific-position-in-a-linked-list";
-import { reversePrint } from "./data-structures/LinkedList/Questions/print-the-elements-of-a-linked-list-in-reverse";
+import { DoublyLinkedList } from "./data-structures/LinkedList/DoublyLinkedList";
+
 import "./style.css";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
@@ -11,12 +9,11 @@ app.innerHTML = `
   <a href="https://github.com/Aditya1942/js-dsa" target="_blank">Repo</a>
 `;
 
-let list = new LinkedList();
-list.append(1);
-list.append(2);
-list.append(3);
-list.append(4);
-list.append(5);
-console.log(list.toString());
-list.head = reversePrint(list.head);
-console.log("reverse", list.toString());
+let linkedList = new DoublyLinkedList();
+linkedList.insert(1, 0);
+linkedList.insert(3, 0);
+linkedList.insert(2, 1);
+
+console.log(linkedList.at(0));
+console.log(linkedList.at(1));
+console.log(linkedList.at(2));

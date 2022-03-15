@@ -1,4 +1,4 @@
-export class LinkedListNode {
+export class LinkedListNode implements LinkedListNodeInterface {
   data: any;
   next: LinkedListNode | null;
   constructor(data: any, next: any = null) {
@@ -6,16 +6,14 @@ export class LinkedListNode {
     this.next = next;
   }
 }
-export class LinkedList {
-  head: LinkedListNode | null;
-  tail: LinkedListNode | null;
-  length: number = 0;
-  currentNode: any;
+export class LinkedList implements LinkedListInterface {
+  head: LinkedListNode | null; // Head
+  tail: LinkedListNode | null; // Tail
+  length: number = 0; // length of linked list
   constructor() {
-    // first element in linked list
-    this.head = null;
-    // last element in linked list
-    this.tail = null;
+    this.head = null; // first element in linked list
+
+    this.tail = null; // last element in linked list
     this.length = 0;
   }
   // insert Node at beginning of LinkedList
@@ -103,7 +101,7 @@ export class LinkedList {
     }
     if (this.tail?.data === value) {
       this.tail = currentNode;
-      head = this.currentNode;
+      head = currentNode;
     }
     return head;
   }
@@ -197,7 +195,7 @@ export class LinkedList {
   }
 
   // Check if list is empty
-  isEmpty() {
+  isEmpty(): boolean {
     return this.length === 0;
   }
 
@@ -214,16 +212,16 @@ export class LinkedList {
     return LinkedListString || "";
   }
   // Get the size of the list
-  size() {
+  size(): number {
     return this.length;
   }
   // Get the head
-  getHead() {
+  getHead(): LinkedListNode | null {
     return this.head;
   }
 
   // Get the tail
-  getTail() {
+  getTail(): LinkedListNode | null {
     return this.tail;
   }
 }
