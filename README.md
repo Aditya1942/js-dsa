@@ -2,4 +2,4 @@
 
 ## Data Structures
 
-- [Linked List](src/data-structures/LinkedList.ts)
+- [Linked List](src/data-structures/LinkedList/LinkedList.ts)
