@@ -1,7 +1,7 @@
-import { LinkedList } from "../data-structures/LinkedList/LinkedList";
-import { deleteNode } from "../data-structures/LinkedList/Questions/delete-a-node-from-a-linked-list";
+import { LinkedList } from "../../data-structures/LinkedList/LinkedList";
+import { deleteNode } from "../../data-structures/LinkedList/Questions/delete-a-node-from-a-linked-list";
 
-test("at", () => {
+test("deleteNode", () => {
   let list = new LinkedList();
   list.append(20);
   list.append(6);

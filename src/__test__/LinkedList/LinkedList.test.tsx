@@ -1,4 +1,4 @@
-import { LinkedList } from "../data-structures/LinkedList/LinkedList";
+import { LinkedList } from "../../data-structures/LinkedList/LinkedList";
 
 test("at", () => {
   let linkedList = new LinkedList();
@@ -102,7 +102,6 @@ test("toString", () => {
 test("full test", () => {
   let linkedList = new LinkedList();
   expect(linkedList.isEmpty()).toEqual(true);
-
   expect(linkedList.size()).toEqual(0);
   linkedList.append("appended");
   expect(linkedList.isEmpty()).toEqual(false);
