@@ -32,9 +32,14 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
   find() {
     throw new Error("Method not implemented.");
   }
+  append(data: any): void {
+    return this.insert(data, -1);
+  }
+  prepend(data: any): void {
+    return this.insert(data, 0);
+  }
   insert(data: any, index: number): void {
     let newNode = new DoublyLinkedListNode(data);
-    index = index < 0 ? 0 : index ?? 0;
 
     // inserting Node at beginning
     if (!this.head) {
@@ -45,6 +50,15 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
       this.length++;
       return;
     }
+    // inserting Node at end
+    if (index === -1) {
+      if (this.tail) this.tail.next = newNode;
+      newNode.previous = this.tail;
+      this.tail = newNode;
+      this.length++;
+      return;
+    }
+    // inserting Node at beginning
     if (index === 0) {
       newNode.next = this.head;
       this.head.previous = newNode;

@@ -5,4 +5,6 @@ interface DoublyLinkedListInterface {
   at(index: number): any;
   find(): any;
   insert(data: any, index: number): void;
+  append(data: any): void;
+  prepend(data: any): void;
 }

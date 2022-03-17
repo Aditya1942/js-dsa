@@ -10,10 +10,11 @@ app.innerHTML = `
 `;
 
 let linkedList = new DoublyLinkedList();
-linkedList.insert(1, 0);
-linkedList.insert(3, 0);
-linkedList.insert(2, 1);
+linkedList.append(1);
+linkedList.append(2);
+linkedList.append(3);
 
 console.log(linkedList.at(0));
 console.log(linkedList.at(1));
 console.log(linkedList.at(2));
+console.log(linkedList);
