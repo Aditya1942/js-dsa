@@ -29,8 +29,15 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
     }
     if (!currentNode) return { data: null, next: null };
   }
-  find() {
-    throw new Error("Method not implemented.");
+  find(data: any): any {
+    if (!this.head) return;
+    if (this.head.data === data) return this.head;
+
+    let currentNode = this.head;
+    while (currentNode.next) {
+      currentNode = currentNode.next;
+      if (currentNode.data === data) return currentNode;
+    }
   }
   append(data: any): void {
     return this.insert(data, -1);
