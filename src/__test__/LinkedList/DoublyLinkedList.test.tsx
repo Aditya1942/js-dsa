@@ -18,3 +18,12 @@ test("append", () => {
   expect(linkedList.at(1).data).toEqual(2);
   expect(linkedList.at(0).data).toEqual(1);
 });
+test("prepend", () => {
+  let linkedList = new DoublyLinkedList();
+  linkedList.prepend(1);
+  linkedList.prepend(2);
+  linkedList.prepend(3);
+  expect(linkedList.at(2).data).toEqual(1);
+  expect(linkedList.at(1).data).toEqual(2);
+  expect(linkedList.at(0).data).toEqual(3);
+});
