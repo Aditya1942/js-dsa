@@ -24,7 +24,7 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
   }
 
   at(index: number): any {
-    if (!this.head) return;
+    if (!this.head) return { data: null, next: null };
     if (index === 0) return this.head;
     let currentNode: DoublyLinkedListNode | null = this.head;
     let count = 0;
@@ -57,7 +57,7 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
     // inserting Node at beginning
     if (!this.head) {
       this.head = newNode;
-      if (this.tail?.data !== null) {
+      if (!this.tail?.data) {
         this.tail = newNode;
       }
       this.length++;
@@ -76,9 +76,6 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
       newNode.next = this.head;
       this.head.previous = newNode;
       this.head = newNode;
-      if (this.tail?.data !== null) {
-        this.tail = newNode;
-      }
       this.length++;
       return;
     }
@@ -103,8 +100,6 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
     newNode.previous = this.tail;
     this.tail = newNode;
     this.length++;
-
-    return;
   }
   delete(data: any): any {
     if (!this.head) return;
@@ -134,13 +129,34 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
       } else currentNode = currentNode.next;
     }
     if (this.tail?.data === data) {
+      node = this.tail;
       this.tail = currentNode;
       this.length--;
-      node = currentNode;
     }
+    return node;
   }
   deleteAt(index: number): any {
-    console.log(index);
-    throw new Error("Method not implemented.");
+    if (!this.head) return;
+    let node = null;
+    if (index === 0) {
+      node = this.head;
+      this.head = this.head.next;
+      this.length--;
+    }
+    let count = 0;
+    let currentNode = this.head;
+    while (currentNode?.next) {
+      if (index === count + 1) {
+        node = currentNode.next;
+        currentNode.next = currentNode.next.next;
+        if (currentNode.next?.previous) {
+          currentNode.next.previous = currentNode;
+        }
+        this.length--;
+      } else currentNode = currentNode.next;
+      count++;
+    }
+
+    return node;
   }
 }
