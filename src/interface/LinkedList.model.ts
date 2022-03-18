@@ -1,4 +1,9 @@
-interface LinkedListInterface {
+export interface LinkedListNodeInterface {
+  data: any;
+  next: LinkedListNodeInterface | null;
+}
+
+export interface LinkedListInterface {
   head: LinkedListNodeInterface | null;
   tail: LinkedListNodeInterface | null;
   prepend(value: any): any;

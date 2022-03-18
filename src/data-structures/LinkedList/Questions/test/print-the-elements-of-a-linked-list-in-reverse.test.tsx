@@ -1,5 +1,5 @@
-import { LinkedList } from "../../data-structures/LinkedList/LinkedList";
-import { reversePrint } from "../../data-structures/LinkedList/Questions/print-the-elements-of-a-linked-list-in-reverse";
+import { LinkedList } from "../../LinkedList";
+import { reversePrint } from "../print-the-elements-of-a-linked-list-in-reverse";
 
 test("reverseLinkedList", () => {
   let linkedList = new LinkedList();

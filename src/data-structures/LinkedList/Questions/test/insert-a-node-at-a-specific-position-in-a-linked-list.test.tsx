@@ -1,5 +1,5 @@
-import { LinkedList } from "../../data-structures/LinkedList/LinkedList";
-import { insertNodeAtPosition } from "../../data-structures/LinkedList/Questions/insert-a-node-at-a-specific-position-in-a-linked-list";
+import { LinkedList } from "../../LinkedList";
+import { insertNodeAtPosition } from "../insert-a-node-at-a-specific-position-in-a-linked-list";
 
 test("insertNodeAtPosition", () => {
   let list = new LinkedList();

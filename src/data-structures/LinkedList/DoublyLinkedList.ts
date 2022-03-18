@@ -1,3 +1,8 @@
+import {
+  DoublyLinkedListInterface,
+  DoublyLinkedListNodeInterface,
+} from "../../interface/DoublyLinkedList.model";
+
 export class DoublyLinkedListNode implements DoublyLinkedListNodeInterface {
   data: any;
   next: DoublyLinkedListNode | null;
@@ -17,6 +22,7 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
     this.tail = null; // last element in linked list
     this.length = 0;
   }
+
   at(index: number): any {
     if (!this.head) return;
     if (index === 0) return this.head;
@@ -99,5 +105,42 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
     this.length++;
 
     return;
+  }
+  delete(data: any): any {
+    if (!this.head) return;
+    let node = null;
+    if (this.head.data === data) {
+      node = this.head;
+      if (!this.head.next) {
+        this.head = null;
+        this.tail = null;
+      } else {
+        if (this.head.next?.previous) this.head.next.previous = null;
+        this.head = this.head.next;
+      }
+
+      this.length--;
+      return node;
+    }
+    let currentNode = this.head;
+    while (currentNode.next) {
+      if (currentNode.next.data === data) {
+        node = currentNode.next;
+        currentNode.next = currentNode.next.next;
+        if (currentNode.next?.previous) {
+          currentNode.next.previous = currentNode;
+        }
+        this.length--;
+      } else currentNode = currentNode.next;
+    }
+    if (this.tail?.data === data) {
+      this.tail = currentNode;
+      this.length--;
+      node = currentNode;
+    }
+  }
+  deleteAt(index: number): any {
+    console.log(index);
+    throw new Error("Method not implemented.");
   }
 }

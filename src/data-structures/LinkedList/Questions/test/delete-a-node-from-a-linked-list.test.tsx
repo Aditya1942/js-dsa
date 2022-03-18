@@ -1,5 +1,5 @@
-import { LinkedList } from "../../data-structures/LinkedList/LinkedList";
-import { deleteNode } from "../../data-structures/LinkedList/Questions/delete-a-node-from-a-linked-list";
+import { LinkedList } from "../../LinkedList";
+import { deleteNode } from "../delete-a-node-from-a-linked-list";
 
 test("deleteNode", () => {
   let list = new LinkedList();

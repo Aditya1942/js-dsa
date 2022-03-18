@@ -1,3 +1,8 @@
+import {
+  LinkedListInterface,
+  LinkedListNodeInterface,
+} from "../../interface/LinkedList.model";
+
 export class LinkedListNode implements LinkedListNodeInterface {
   data: any;
   next: LinkedListNode | null;
