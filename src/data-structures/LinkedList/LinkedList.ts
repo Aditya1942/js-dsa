@@ -135,7 +135,7 @@ export class LinkedList implements LinkedListInterface {
     }
     let count = 1;
     let currentNode = this.head;
-    let head = null;
+    let node = null;
     // find Node in with index
     while (currentNode.next) {
       if (count === index) break;
@@ -144,17 +144,17 @@ export class LinkedList implements LinkedListInterface {
     }
     // if index is in between the LinkedList
     if (currentNode.next) {
-      head = currentNode.next;
+      node = currentNode.next;
       currentNode.next = currentNode.next.next;
       this.length--;
-      return head;
+      return node;
     }
     // if removing last Node
     if (this.tail?.data === currentNode.data) {
       this.tail = currentNode;
-      head = currentNode;
+      node = currentNode;
     }
-    return head;
+    return node;
   }
   // delete first Node from LinkedList
   deleteHead(): any {

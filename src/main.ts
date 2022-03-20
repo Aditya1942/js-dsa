@@ -11,9 +11,11 @@ app.innerHTML = `
 
 let linkedList = new DoublyLinkedList();
 linkedList.insert(1, 0);
-linkedList.insert(2, 0);
+linkedList.insert(2, 1);
+linkedList.insert(3, 2);
+linkedList.insert(4, 3);
+linkedList.insert(5, 4);
 
-console.log(linkedList.deleteAt(0));
-// console.log(linkedList.delete(2));
-// console.log(linkedList.delete(3));
+console.log(linkedList.deleteAt(3).data);
+
 console.log(linkedList);

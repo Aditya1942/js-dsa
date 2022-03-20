@@ -68,7 +68,16 @@ describe("DoublyLinkedList", () => {
   it("deleteAt", () => {
     expect(linkedList.deleteAt(0)?.data).toBeUndefined();
     linkedList.insert(1, 0);
-    linkedList.insert(2, 1);
     expect(linkedList.deleteAt(0).data).toEqual(1);
+    linkedList.insert(1, 0);
+    linkedList.insert(2, 1);
+    linkedList.insert(3, 2);
+    linkedList.insert(4, 3);
+    linkedList.insert(5, 4);
+
+    expect(linkedList.deleteAt(3)?.data).toEqual(4);
+    expect(linkedList.deleteAt(0)?.data).toEqual(1);
+    expect(linkedList.deleteAt(2)?.data).toEqual(5);
+    expect(linkedList.deleteAt(5)?.data).toBeUndefined();
   });
 });

@@ -137,24 +137,42 @@ export class DoublyLinkedList implements DoublyLinkedListInterface {
   }
   deleteAt(index: number): any {
     if (!this.head) return;
+    if (index >= this.length) return;
     let node = null;
     if (index === 0) {
+      if (this.length === 1) {
+        let node = this.head;
+        this.head = null;
+        this.tail = null;
+        this.length--;
+        return node;
+      }
       node = this.head;
       this.head = this.head.next;
       this.length--;
+      return node;
     }
-    let count = 0;
+    if (index === this.length - 1 && this.tail) {
+      node = this.tail;
+      this.tail = this.tail.previous;
+      if (this.tail?.next) this.tail.next = null;
+      this.length--;
+      return node;
+    }
+    let count = 1;
     let currentNode = this.head;
     while (currentNode?.next) {
-      if (index === count + 1) {
-        node = currentNode.next;
-        currentNode.next = currentNode.next.next;
-        if (currentNode.next?.previous) {
-          currentNode.next.previous = currentNode;
-        }
-        this.length--;
-      } else currentNode = currentNode.next;
+      if (index === count) break;
+      currentNode = currentNode.next;
       count++;
+    }
+    if (currentNode?.next) {
+      node = currentNode.next;
+      currentNode.next = currentNode.next.next;
+      if (currentNode.next?.previous) {
+        currentNode.next.previous = currentNode;
+      }
+      this.length--;
     }
 
     return node;
