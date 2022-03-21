@@ -17,3 +17,11 @@ export function reversePrint(llist: LinkedListNode | null) {
 
   return previous;
 }
+export function reversePrintrecursive(head: LinkedListNode) {
+  if (head === null || head.next === null) return head;
+  let newHead: any = reversePrintrecursive(head.next);
+  let headNext = head.next;
+  headNext.next = head;
+  head.next = null;
+  return newHead;
+}

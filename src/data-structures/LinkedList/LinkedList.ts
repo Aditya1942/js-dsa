@@ -3,17 +3,17 @@ import {
   LinkedListNodeInterface,
 } from "../../interface/LinkedList.model";
 
-export class LinkedListNode implements LinkedListNodeInterface {
-  data: any;
-  next: LinkedListNode | null;
-  constructor(data: any, next: any = null) {
+export class LinkedListNode<T> implements LinkedListNodeInterface<T> {
+  data: T;
+  next: LinkedListNode<T> | null;
+  constructor(data: T, next: any = null) {
     this.data = data;
     this.next = next;
   }
 }
-export class LinkedList implements LinkedListInterface {
-  head: LinkedListNode | null; // Head
-  tail: LinkedListNode | null; // Tail
+export class LinkedList<T> implements LinkedListInterface<T> {
+  head: LinkedListNode<T> | null; // Head
+  tail: LinkedListNode<T> | null; // Tail
   length: number = 0; // length of linked list
   constructor() {
     this.head = null; // first element in linked list
@@ -22,7 +22,7 @@ export class LinkedList implements LinkedListInterface {
     this.length = 0;
   }
   // insert Node at beginning of LinkedList
-  prepend(value: any): any {
+  prepend(value: T): any {
     // make new Node object
 
     const newNode = new LinkedListNode(value, this.head);
@@ -37,7 +37,7 @@ export class LinkedList implements LinkedListInterface {
     return newNode;
   }
   // insert Node at the end of LinkedList
-  append(value: any): any {
+  append(value: T): any {
     let newNode = new LinkedListNode(value);
     //  if is first node in LinkedList insert new Node in head
     if (!this.head) {
@@ -55,14 +55,14 @@ export class LinkedList implements LinkedListInterface {
     return newNode;
   }
   // insert Node at the given index of LinkedList
-  insert(value: any, index: number): any {
+  insert(value: T, index: number): any {
     index = index < 0 ? 0 : index ?? 0;
     // if index is first Node
     if (index === 0) {
       return this.prepend(value);
     }
     let count = 1;
-    let currentNode: LinkedListNode | null = this.head;
+    let currentNode: LinkedListNode<T> | null = this.head;
     const newNode = new LinkedListNode(value);
     // find Node in with index
     while (currentNode) {
@@ -81,7 +81,7 @@ export class LinkedList implements LinkedListInterface {
     return this.append(value);
   }
   // delete Node from LinkedList with value
-  delete(value: any): any {
+  delete(value: T): any {
     // if is empty LinkedList
     if (!this.head) return;
 
@@ -168,7 +168,8 @@ export class LinkedList implements LinkedListInterface {
   at(index: number): any {
     if (!this.head) return;
     if (index === 0) return this.head;
-    let currentNode: LinkedListNode | null = this.head;
+    if (index === -1) return this.tail;
+    let currentNode: LinkedListNode<T> | null = this.head;
     let count = 0;
     while (currentNode) {
       if (index === count) return currentNode;
@@ -188,12 +189,26 @@ export class LinkedList implements LinkedListInterface {
     }
     return null;
   }
+  reverse(): LinkedList<T> | null {
+    if (!this.head) {
+      return null;
+    }
+    let previous = null;
+    let currentNode: any = this.head;
+    while (currentNode) {
+      let next = currentNode.next;
+      currentNode.next = previous;
+      previous = currentNode;
+      currentNode = next;
+    }
+    return previous;
+  }
   // get array of LinkedList
   toArray(): string[] {
     let List: string[] = [];
     let currentNode = this.head;
     while (currentNode) {
-      List.push(currentNode.data ?? null);
+      List.push(currentNode.data + "" ?? "null");
       currentNode = currentNode.next;
     }
     return List;
@@ -205,28 +220,33 @@ export class LinkedList implements LinkedListInterface {
   }
 
   // get String representation of LinkedList
-  toString(): string {
+  toString(separator: string = "=>", head: any = this.head): string {
     let LinkedListString = "";
     let List: any[] = [];
-    let currentNode = this.head;
+    let currentNode = head;
     while (currentNode) {
       List.push(currentNode.data ?? null);
       currentNode = currentNode.next;
     }
-    LinkedListString = List.join("=>");
+    LinkedListString = List.join(separator);
     return LinkedListString || "";
   }
+  toReverseString(separator: string = "=>"): string {
+    let reversed = this.reverse();
+    return this.toString(separator, reversed);
+  }
+
   // Get the size of the list
   size(): number {
     return this.length;
   }
   // Get the head
-  getHead(): LinkedListNode | null {
+  getHead(): LinkedListNode<T> | null {
     return this.head;
   }
 
   // Get the tail
-  getTail(): LinkedListNode | null {
+  getTail(): LinkedListNode<T> | null {
     return this.tail;
   }
 }

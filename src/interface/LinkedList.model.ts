@@ -1,15 +1,15 @@
-export interface LinkedListNodeInterface {
+export interface LinkedListNodeInterface<T> {
   data: any;
-  next: LinkedListNodeInterface | null;
+  next: LinkedListNodeInterface<T> | null;
 }
 
-export interface LinkedListInterface {
-  head: LinkedListNodeInterface | null;
-  tail: LinkedListNodeInterface | null;
-  prepend(value: any): any;
-  append(value: any): any;
-  insert(value: any, index: number): any;
-  delete(value: any): any;
+export interface LinkedListInterface<T> {
+  head: LinkedListNodeInterface<T> | null;
+  tail: LinkedListNodeInterface<T> | null;
+  prepend(value: T): any;
+  append(value: T): any;
+  insert(value: T, index: number): any;
+  delete(value: T): any;
   deleteAt(index: number): any;
   deleteHead(): any;
   deleteTail(): any;
@@ -19,6 +19,6 @@ export interface LinkedListInterface {
   isEmpty(): boolean;
   toString(): string;
   size(): number;
-  getHead(): LinkedListNodeInterface | null;
-  getTail(): LinkedListNodeInterface | null;
+  getHead(): LinkedListNodeInterface<T> | null;
+  getTail(): LinkedListNodeInterface<T> | null;
 }

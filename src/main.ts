@@ -1,4 +1,7 @@
 import { DoublyLinkedList } from "./data-structures/LinkedList/DoublyLinkedList";
+import { LinkedList } from "./data-structures/LinkedList/LinkedList";
+import { reversePrintrecursive } from "./data-structures/LinkedList/Questions/print-the-elements-of-a-linked-list-in-reverse";
+import { Queue } from "./data-structures/Queue/Queue";
 
 import "./style.css";
 
@@ -9,13 +12,17 @@ app.innerHTML = `
   <a href="https://github.com/Aditya1942/js-dsa" target="_blank">Repo</a>
 `;
 
-let linkedList = new DoublyLinkedList();
-linkedList.insert(1, 0);
-linkedList.insert(2, 1);
-linkedList.insert(3, 2);
-linkedList.insert(4, 3);
-linkedList.insert(5, 4);
-
-console.log(linkedList.deleteAt(3).data);
-
+let linkedList = new LinkedList<number>();
+linkedList.append(1);
+linkedList.append(2);
+linkedList.append(3);
 console.log(linkedList);
+console.log(linkedList.toString());
+console.log(linkedList.toReverseString());
+// let queue = new Queue<number>();
+// queue.enqueue(1);
+// console.log(queue.peek());
+// queue.enqueue(2);
+// console.log(queue.peek());
+// console.log(queue.dequeue());
+// console.log(queue.peek());
