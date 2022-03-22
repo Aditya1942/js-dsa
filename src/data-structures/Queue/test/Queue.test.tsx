@@ -32,7 +32,7 @@ describe("Queue", () => {
     queue.enqueue(2);
     expect(queue.toString()).toBe("2=>1");
   });
-  it("Queue AlL methods Test", () => {
+  it("Queue Full Test", () => {
     expect(queue.isEmpty()).toBe(true);
     expect(queue.peek()).toBe(undefined);
     expect(queue.enqueue(1)).toBe(1);
