@@ -2,7 +2,7 @@ import { QueueInterface } from "../../interface/Queue.model";
 import { LinkedList } from "../LinkedList/LinkedList";
 
 export class Queue<T> implements QueueInterface<T> {
-  linkedList = new LinkedList<T>();
+  private linkedList = new LinkedList<T>();
   peek(): T {
     return this.linkedList.at(-1)?.data;
   }

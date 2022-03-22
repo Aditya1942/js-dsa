@@ -1,7 +1,7 @@
-export interface QueueInterface<Type> {
+export interface QueueInterface<T> {
   isEmpty(): boolean;
-  peek(): Type;
-  enqueue(data: Type): Type;
-  dequeue(): Type | null;
+  peek(): T;
+  enqueue(data: T): T;
+  dequeue(): T | null;
   toString(): string;
 }
