@@ -1,9 +1,9 @@
-import { Stack } from "../Stack";
+import { StackWithArray } from "../StackWithArray";
 
-describe("Stack", () => {
-  let stack: Stack<number>;
+describe("StackWithArray", () => {
+  let stack: StackWithArray<number>;
   beforeEach(() => {
-    stack = new Stack<number>();
+    stack = new StackWithArray<number>();
   });
   it("isEmpty", () => {
     expect(stack.isEmpty()).toBe(true);
