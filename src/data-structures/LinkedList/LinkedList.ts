@@ -204,11 +204,11 @@ export class LinkedList<T> implements LinkedListInterface<T> {
     return previous;
   }
   // get array of LinkedList
-  toArray(): string[] {
-    let List: string[] = [];
+  toArray(): any[] {
+    let List: any[] = [];
     let currentNode = this.head;
     while (currentNode) {
-      List.push(currentNode.data + "" ?? "null");
+      List.push(currentNode.data ?? null);
       currentNode = currentNode.next;
     }
     return List;

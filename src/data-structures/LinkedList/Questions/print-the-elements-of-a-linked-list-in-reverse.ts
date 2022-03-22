@@ -1,6 +1,6 @@
 import { LinkedListNode } from "../LinkedList";
 
-export function reversePrint(llist: LinkedListNode | null) {
+export function reversePrint(llist: LinkedListNode<any> | null) {
   // Write your code here
   if (llist === null) {
     return;
@@ -17,7 +17,7 @@ export function reversePrint(llist: LinkedListNode | null) {
 
   return previous;
 }
-export function reversePrintrecursive(head: LinkedListNode) {
+export function reversePrintrecursive(head: LinkedListNode<any>) {
   if (head === null || head.next === null) return head;
   let newHead: any = reversePrintrecursive(head.next);
   let headNext = head.next;

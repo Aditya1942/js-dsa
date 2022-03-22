@@ -1,6 +1,9 @@
 import { LinkedListNode } from "../LinkedList";
 
-export function deleteNode(llist: LinkedListNode | null, position: number) {
+export function deleteNode(
+  llist: LinkedListNode<any> | null,
+  position: number
+) {
   // Write your code here
   if (!llist) return;
   if (position === 0) {

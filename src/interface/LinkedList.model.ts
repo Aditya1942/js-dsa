@@ -15,7 +15,7 @@ export interface LinkedListInterface<T> {
   deleteTail(): any;
   at(index: number): any;
   find(value: any): any;
-  toArray(): string[];
+  toArray(): any[];
   isEmpty(): boolean;
   toString(): string;
   size(): number;

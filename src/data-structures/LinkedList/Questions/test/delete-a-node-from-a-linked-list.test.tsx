@@ -2,7 +2,7 @@ import { LinkedList } from "../../LinkedList";
 import { deleteNode } from "../delete-a-node-from-a-linked-list";
 
 test("deleteNode", () => {
-  let list = new LinkedList();
+  let list = new LinkedList<any>();
   list.append(20);
   list.append(6);
   list.append(2);

@@ -1,7 +1,7 @@
 import { LinkedListNode } from "../LinkedList";
 
 export function insertNodeAtPosition(
-  llist: LinkedListNode | null,
+  llist: LinkedListNode<any> | null,
   data: any,
   position: number
 ) {

@@ -2,7 +2,7 @@ import { LinkedList } from "../../LinkedList";
 import { reversePrint } from "../print-the-elements-of-a-linked-list-in-reverse";
 
 test("reverseLinkedList", () => {
-  let linkedList = new LinkedList();
+  let linkedList = new LinkedList<any>();
   linkedList.append(1);
   linkedList.append(2);
   linkedList.append(3);

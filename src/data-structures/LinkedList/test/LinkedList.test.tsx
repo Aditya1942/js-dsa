@@ -1,16 +1,16 @@
 import { LinkedList } from "../LinkedList";
 describe("LinkedList", () => {
   test("at", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.append(1);
     linkedList.append(2);
     linkedList.append(3);
     expect(linkedList.at(2).data).toEqual(3);
     expect(linkedList.at(5).data).toEqual(null);
-    expect(linkedList.at(-1).data).toEqual(null);
+    expect(linkedList.at(-1).data).toEqual(3);
   });
   test("append", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.append(1);
     linkedList.append(2);
     linkedList.append(3);
@@ -19,7 +19,7 @@ describe("LinkedList", () => {
     expect(linkedList.at(0).data).toEqual(1);
   });
   test("prepend", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.prepend(1);
     linkedList.prepend(2);
     linkedList.prepend(3);
@@ -28,7 +28,7 @@ describe("LinkedList", () => {
     expect(linkedList.at(0).data).toEqual(3);
   });
   test("insert", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.insert(1, 0);
     linkedList.insert(3, 0);
     linkedList.insert(2, 1);
@@ -37,7 +37,7 @@ describe("LinkedList", () => {
     expect(linkedList.at(2).data).toEqual(1);
   });
   test("delete", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.prepend(1);
     linkedList.prepend(2);
     linkedList.prepend(3);
@@ -48,7 +48,7 @@ describe("LinkedList", () => {
     expect(linkedList.delete(-1)?.data).toBeUndefined();
   });
   test("deleteAt", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.insert(1, 0);
     linkedList.insert(2, 1);
     linkedList.insert(3, 2);
@@ -57,7 +57,7 @@ describe("LinkedList", () => {
     expect(linkedList.deleteAt(0).data).toEqual(1);
   });
   test("deleteHead", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.prepend(1);
     linkedList.prepend(2);
     linkedList.prepend(3);
@@ -66,7 +66,7 @@ describe("LinkedList", () => {
     expect(linkedList.deleteHead().data).toEqual(1);
   });
   test("deleteTail", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.prepend(1);
     linkedList.prepend(2);
     linkedList.prepend(3);
@@ -75,7 +75,7 @@ describe("LinkedList", () => {
     expect(linkedList.deleteTail().data).toEqual(3);
   });
   test("find", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.append(1);
     linkedList.append(2);
     linkedList.append(3);
@@ -85,14 +85,14 @@ describe("LinkedList", () => {
     expect(linkedList.find(5)?.data).toBeUndefined();
   });
   test("toArray", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.append(1);
     linkedList.append(2);
     linkedList.append(3);
     expect(linkedList.toArray()).toEqual([1, 2, 3]);
   });
   test("toString", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<number>();
     linkedList.append(0);
     linkedList.append(1);
     linkedList.append(2);
@@ -100,7 +100,7 @@ describe("LinkedList", () => {
     expect(linkedList.toString()).toEqual("0=>1=>2=>3");
   });
   test("full test", () => {
-    let linkedList = new LinkedList();
+    let linkedList = new LinkedList<string>();
     expect(linkedList.isEmpty()).toEqual(true);
     expect(linkedList.size()).toEqual(0);
     linkedList.append("appended");
