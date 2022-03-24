@@ -4,7 +4,7 @@ import { LinkedList } from "../LinkedList/LinkedList";
 export class Queue<T> implements QueueInterface<T> {
   private linkedList = new LinkedList<T>();
   peek(): T {
-    return this.linkedList.at(-1)?.data;
+    return this.linkedList.at(this.linkedList.length - 1)?.data;
   }
   enqueue(data: T): T {
     this.linkedList.insert(data, 0);
