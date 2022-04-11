@@ -5,13 +5,14 @@ const random = () => {
     }, 1000);
   });
 };
-const timer = (sec: any) => {
+const sleep = (sec: any) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(sec);
     }, sec * 1000);
   });
 };
+// loop with sleep and callback
 const loop = async (
   startRange: number,
   endRange: number,
@@ -19,7 +20,7 @@ const loop = async (
 ) => {
   for (let i = startRange; i <= endRange; i++) {
     callback(i);
-    await timer(1);
+    await sleep(1);
   }
 };
 const infiniteLoop = async (callback: Function) => {
@@ -27,13 +28,13 @@ const infiniteLoop = async (callback: Function) => {
   while (true) {
     callback(count);
     count += 1;
-    await timer(1);
+    await sleep(1);
   }
 };
 const loopForEach = async (array: any[], callback: Function) => {
   for (const iterator of array) {
     callback(iterator);
-    await timer(1);
+    await sleep(1);
   }
 };
 
