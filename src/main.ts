@@ -1,6 +1,4 @@
-import BubbleSort from "./algo/sorting/BubbleSort";
-import main from "./js/reduce";
-
+import main from "./js/callback";
 import "./style.css";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
